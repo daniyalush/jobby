@@ -1,0 +1,45 @@
+<footer class="bg-[#1f1f1f] text-white py-10">
+  <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-10">
+    <!-- Social Links & Branding -->
+    <div class="space-y-6">
+      <h2 class="text-xl font-semibold tracking-wide">Follow Us</h2>
+      <div class="flex gap-4">
+        <a href="#" class="hover:text-blue-400 transition-colors">Facebook</a>
+        <a href="#" class="hover:text-blue-400 transition-colors">Twitter</a>
+        <a href="#" class="hover:text-blue-400 transition-colors">Instagram</a>
+      </div>
+      <p class="text-sm text-gray-400">
+        © {{ currentYear }} My Angular App. All rights reserved.
+      </p>
+    </div>
+
+    <!-- Newsletter Subscription -->
+    <div class="space-y-4">
+      <h2 class="text-xl font-semibold tracking-wide">
+        Subscribe to our Newsletter
+      </h2>
+      <form class="space-y-4" action="#" method="post">
+        <div class="flex flex-col gap-3">
+          <input
+            type="text"
+            placeholder="Your Name"
+            required
+            class="p-3 rounded-md bg-white text-black focus:outline-none focus:ring-2 focus:ring-blue-400"
+          />
+          <input
+            type="email"
+            placeholder="Your Email"
+            required
+            class="p-3 rounded-md bg-white text-black focus:outline-none focus:ring-2 focus:ring-blue-400"
+          />
+        </div>
+        <button
+          type="submit"
+          class="w-full bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800 transition text-white font-bold py-3 rounded-full shadow-lg"
+        >
+          Subscribe
+        </button>
+      </form>
+    </div>
+  </div>
+</footer>

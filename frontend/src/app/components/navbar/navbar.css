@@ -1,0 +1,22 @@
+button {
+  font-size: 20px;
+  cursor: pointer;
+  position: relative;
+  text-decoration: none; /* remove default underline */
+}
+
+button::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -2px;
+  width: 0%;
+  height: 2px;
+  background-color: white;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+button:hover::after {
+  width: 100%;
+}
