@@ -99,6 +99,19 @@ app.get("/api/jobs/db", async (req, res) => {
   }
 });
 
+// ✅ In production: serve Angular dist/ folder
+if (process.env.NODE_ENV === "production") {
+  app.use(
+    express.static(path.join(__dirname, "../frontend/dist/frontend/browser"))
+  );
+
+  app.get("*", (req, res) => {
+    res.sendFile(
+      path.join(__dirname, "../frontend/dist/frontend/browser/index.html")
+    );
+  });
+}
+
 server.listen(PORT, () =>
   console.log(`✅ Server running on http://localhost:${PORT}`)
 );
