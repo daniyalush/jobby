@@ -3,7 +3,8 @@ import axios from 'axios';
 
 @Injectable({ providedIn: 'root' })
 export class JobService {
-  private apiUrl = 'http://localhost:5000/api/jobs/db';
+  private apiUrl =
+    'https://17c2d292-61f0-4256-8156-cb9b473ba101-00-114sd6t7j0nri.pike.replit.dev/api/jobs/db';
 
   async getJobs(): Promise<any[]> {
     try {
