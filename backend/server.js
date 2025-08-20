@@ -1,6 +1,5 @@
 const { Server } = require("socket.io");
 const express = require("express");
-const dotenv = require("dotenv");
 const axios = require("axios");
 const cors = require("cors");
 const http = require("http");
@@ -8,15 +7,11 @@ const path = require("path");
 const connectDB = require("./database/db");
 const Job = require("./models/job");
 
-// Load environment variables BEFORE anything else
-dotenv.config();
-
-const PORT = process.env.PORT || 5000;
-const MONGO_URI = process.env.MONGO_URI;
+const PORT = 5000;
 const FETCH_INTERVAL = 5 * 60 * 1000; // 5 minutes
 
 // Connect DB
-connectDB(MONGO_URI);
+connectDB("mongodb://localhost:27017/jobs");
 
 const app = express();
 app.use(cors());
