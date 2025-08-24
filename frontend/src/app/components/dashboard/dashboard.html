@@ -8,7 +8,7 @@
       type="text"
       [(ngModel)]="searchTerm"
       placeholder="Search by title, company, or skill..."
-      class="w-2xl border border-gray-700 text-gray-300 bg-[#161b22] rounded-3xl px-6 py-4 focus:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+      class="w-2xl border border-gray-700 text-gray-400 bg-[#161b22] rounded-4xl px-6 py-4 focus:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
     />
   </div>
 
@@ -56,7 +56,7 @@
           </span>
         </div>
 
-        <!-- Description (flex-grow to balance space) -->
+        <!-- Description -->
         <div id="job-description" class="flex-grow overflow-hidden">
           <p class="text-gray-300 text-sm line-clamp-4">
             {{ job.description }}
@@ -66,6 +66,7 @@
         <div id="job-footer" class="flex justify-between items-center mt-2">
           <button
             class="text-sm text-blue-400 hover:underline transition cursor-pointer"
+            (click)="openJobModal(job)"
           >
             Expand
           </button>
@@ -75,7 +76,7 @@
         </div>
       </div>
 
-      <!-- Buttons with date posted-->
+      <!-- Buttons -->
       <div id="job-buttons">
         <a
           [href]="job.url"
@@ -114,4 +115,10 @@
       Next
     </button>
   </div>
+  <!-- Job Modal -->
+  <app-job-modal
+    *ngIf="selectedJob"
+    [job]="selectedJob"
+    (close)="closeJobModal()"
+  ></app-job-modal>
 </main>

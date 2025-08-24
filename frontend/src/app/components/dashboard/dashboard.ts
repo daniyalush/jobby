@@ -3,14 +3,16 @@ import { JobService } from '../../services/job';
 import { io, Socket } from 'socket.io-client';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { JobModal } from '../job-modal/job-modal';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, JobModal],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css',
 })
 export class Dashboard implements OnInit, OnDestroy {
+  selectedJob: any = null;
   jobs: any[] = [];
   searchTerm = '';
   currentPage = 1;
@@ -39,6 +41,14 @@ export class Dashboard implements OnInit, OnDestroy {
         this.jobs.unshift(job); // add new job at the top
       }
     });
+  }
+
+  openJobModal(job: any) {
+    this.selectedJob = job;
+  }
+
+  closeJobModal() {
+    this.selectedJob = null;
   }
 
   ngOnDestroy() {
