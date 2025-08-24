@@ -82,4 +82,8 @@ export class Dashboard implements OnInit, OnDestroy {
   prevPage() {
     if (this.currentPage > 1) this.currentPage--;
   }
+
+  onSearchChange() {
+    this.currentPage = 1;
+  }
 }
