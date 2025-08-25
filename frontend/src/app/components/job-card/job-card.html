@@ -1,0 +1,65 @@
+<div
+  class="flex flex-col bg-[#161b22] border border-gray-700 shadow-md rounded-xl p-5 hover:shadow-lg transition text-white h-full transform duration-200 ease-in-out hover:scale-105"
+>
+  <!-- Info -->
+  <div class="flex flex-col flex-grow mb-6">
+    <!-- Header -->
+    <div>
+      <h3 class="text-lg font-bold line-clamp-1">{{ job.title }}</h3>
+      <p class="text-gray-400 line-clamp-1">
+        {{ job.company }} - {{ job.location }}
+      </p>
+    </div>
+
+    <!-- Skills (single row + counter) -->
+    <div class="flex gap-1 my-3 overflow-hidden whitespace-nowrap mb-4">
+      <span
+        *ngFor="let skill of job.skills.split(', ').slice(0, 3)"
+        class="bg-[#0d1117] text-gray-200 text-sm px-3 py-1 rounded-lg border border-gray-700 hover:bg-gray-700 transition cursor-default"
+      >
+        {{ skill }}
+      </span>
+      <span
+        *ngIf="job.skills.split(', ').length > 3"
+        class="text-gray-400 text-xs px-2 py-1"
+      >
+        +{{ job.skills.split(", ").length - 3 }}
+      </span>
+    </div>
+
+    <!-- Description -->
+    <div class="flex-grow overflow-hidden">
+      <p class="text-gray-300 text-sm line-clamp-5">
+        {{ job.description }}
+      </p>
+    </div>
+
+    <!-- Footer -->
+    <div class="flex justify-between items-center mt-4">
+      <button
+        class="text-sm text-blue-400 hover:underline transition cursor-pointer"
+        (click)="onExpandClick()"
+      >
+        Expand
+      </button>
+      <p class="text-xs text-gray-400">Posted on {{ job.datePosted | date }}</p>
+    </div>
+  </div>
+
+  <!-- Buttons -->
+  <div>
+    <a
+      [href]="job.url"
+      target="_blank"
+      class="block w-full text-center font-semibold text-white px-3 py-2 rounded-md bg-blue-600 hover:bg-blue-700 transition"
+    >
+      View Job
+    </a>
+
+    <button
+      class="mt-3 block w-full font-semibold px-3 py-2 rounded-md bg-blue-600 hover:bg-blue-700 transition"
+    >
+      Save
+    </button>
+  </div>
+</div>

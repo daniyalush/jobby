@@ -4,13 +4,15 @@
 >
   <!-- Modal Box -->
   <div
-    class="bg-[#161b22] text-white w-full max-w-4xl rounded-xl shadow-lg relative p-6 transform transition-all duration-300 ease-out scale-95 opacity-0 animate-fadeIn"
+    class="bg-[#161b22] text-white w-full max-w-4xl rounded-xl shadow-lg relative p-6 transform transition-all duration-300 ease-out scale-95 opacity-0"
+    [ngClass]="isClosing ? 'animate-fadeOut' : 'animate-fadeIn'"
     (click)="$event.stopPropagation()"
   >
     <!-- Close Button -->
     <button
       (click)="onClose()"
       class="absolute top-3 right-3 text-gray-400 hover:text-white text-xl transition duration-200 ease-in-out"
+      aria-label="Close"
     >
       ✕
     </button>
@@ -22,10 +24,10 @@
     </p>
 
     <!-- Skills -->
-    <div class="flex flex-wrap gap-2 mb-4 border-b-1 border-gray-700 pb-4">
+    <div class="flex flex-wrap gap-2 mb-4 border-b border-gray-700 pb-4">
       <span
         *ngFor="let skill of job.skills.split(', ')"
-        class="bg-[#0d1117] text-gray-200 text-s px-3 py-1 rounded-lg border border-gray-700"
+        class="bg-[#0d1117] text-gray-200 text-sm px-3 py-1 rounded-lg border border-gray-700"
       >
         {{ skill }}
       </span>
@@ -40,7 +42,7 @@
 
     <!-- Footer -->
     <div
-      class="flex justify-between items-center mt-4 border-t-1 border-gray-700 pt-4"
+      class="flex justify-between items-center mt-4 border-t border-gray-700 pt-4"
     >
       <p class="text-sm text-gray-400">Posted on {{ job.datePosted | date }}</p>
       <a

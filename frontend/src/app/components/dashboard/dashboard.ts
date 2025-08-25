@@ -1,28 +1,31 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { JobService } from '../../services/job';
-import { io, Socket } from 'socket.io-client';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { io, Socket } from 'socket.io-client';
+
+import { JobService } from '../../services/job';
+import { JobCard } from '../job-card/job-card';
 import { JobModal } from '../job-modal/job-modal';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [CommonModule, FormsModule, JobModal],
+  standalone: true,
+  imports: [CommonModule, FormsModule, JobCard, JobModal],
   templateUrl: './dashboard.html',
-  styleUrl: './dashboard.css',
+  styleUrls: ['./dashboard.css'],
 })
 export class Dashboard implements OnInit, OnDestroy {
-  selectedJob: any = null;
   jobs: any[] = [];
   searchTerm = '';
   currentPage = 1;
   itemsPerPage = 12;
+  selectedJob: any = null;
   private socket!: Socket;
 
   constructor(private jobService: JobService) {}
 
   async ngOnInit() {
-    // Fetch initial jobs from DB
+    // Fetch initial jobs
     this.jobs = await this.jobService.getJobs();
 
     // Sort newest first
@@ -31,24 +34,15 @@ export class Dashboard implements OnInit, OnDestroy {
         new Date(b.datePosted).getTime() - new Date(a.datePosted).getTime()
     );
 
-    // Connect to WebSocket server
-    this.socket = io('http://localhost:5000'); // no /api path
+    // Connect to WebSocket
+    this.socket = io('http://localhost:5000');
 
-    // Listen for new jobs
+    // Listen for new jobs (avoid duplicates by URL)
     this.socket.on('new-job', (job: any) => {
-      // Avoid duplicates
-      if (!this.jobs.some((j) => j.url === job.url)) {
-        this.jobs.unshift(job); // add new job at the top
+      if (!this.jobs.some((j) => j?.url === job?.url)) {
+        this.jobs.unshift(job);
       }
     });
-  }
-
-  openJobModal(job: any) {
-    this.selectedJob = job;
-  }
-
-  closeJobModal() {
-    this.selectedJob = null;
   }
 
   ngOnDestroy() {
@@ -57,12 +51,14 @@ export class Dashboard implements OnInit, OnDestroy {
 
   filteredJobs() {
     const term = this.searchTerm.toLowerCase();
-    return this.jobs.filter(
-      (job) =>
-        job.title.toLowerCase().includes(term) ||
-        job.company.toLowerCase().includes(term) ||
-        job.skills.toLowerCase().includes(term)
-    );
+    return this.jobs.filter((job) => {
+      const title = job?.title?.toLowerCase?.() || '';
+      const company = job?.company?.toLowerCase?.() || '';
+      const skills = job?.skills?.toLowerCase?.() || '';
+      return (
+        title.includes(term) || company.includes(term) || skills.includes(term)
+      );
+    });
   }
 
   paginatedJobs() {
@@ -85,5 +81,17 @@ export class Dashboard implements OnInit, OnDestroy {
 
   onSearchChange() {
     this.currentPage = 1;
+  }
+
+  openJobModal(job: any) {
+    this.selectedJob = job;
+  }
+
+  closeJobModal() {
+    this.selectedJob = null;
+  }
+
+  trackByJobUrl(index: number, job: any): string {
+    return job.url; // or job.id if you have an id
   }
 }
