@@ -1,11 +1,13 @@
-button {
+/* All links except the logo */
+.nav-link {
   font-size: 20px;
   cursor: pointer;
   position: relative;
-  text-decoration: none; /* remove default underline */
+  text-decoration: none;
+  color: white;
 }
 
-button::after {
+.nav-link::after {
   content: "";
   position: absolute;
   left: 50%;
@@ -17,6 +19,22 @@ button::after {
   transform: translateX(-50%);
 }
 
-button:hover::after {
+.nav-link:hover::after,
+.nav-link.active::after {
   width: 100%;
+}
+
+/* Logo */
+.navbar-logo {
+  cursor: pointer;
+  font-family: "Blankscript", sans-serif;
+}
+
+/* Mobile Menu */
+.mobile-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  background-color: #1f1f1f;
+  padding: 1rem;
 }

@@ -2,10 +2,9 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { io, Socket } from 'socket.io-client';
-
 import { JobService } from '../../services/job';
-import { JobCard } from '../job-card/job-card';
-import { JobModal } from '../job-modal/job-modal';
+import { JobCard } from '../../components/job-content/job-card/job-card';
+import { JobModal } from '../../components/job-content/job-modal/job-modal';
 
 @Component({
   selector: 'app-dashboard',

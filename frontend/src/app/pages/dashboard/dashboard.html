@@ -1,5 +1,7 @@
-<main class="w-full p-6 bg-[#0d1117] min-h-screen">
-  <h1 class="text-center text-4xl font-bold mb-6 text-white">Latest Jobs</h1>
+<main class="bg-[#0d1117] w-full p-6 min-h-screen">
+  <h1 class="text-center text-4xl font-bold my-8 text-white">
+    Find Your Dream Job
+  </h1>
 
   <!-- Search Filter -->
   <div class="flex justify-center mb-6">
@@ -35,7 +37,7 @@
     <button
       (click)="prevPage()"
       [disabled]="currentPage === 1"
-      class="px-4 py-2 font-semibold bg-blue-600 text-white hover:bg-blue-700 rounded-md disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+      class="px-4 py-2 font-semibold bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white rounded-md disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
     >
       Prev
     </button>
@@ -43,7 +45,7 @@
     <button
       (click)="nextPage()"
       [disabled]="currentPage === totalPages()"
-      class="px-4 py-2 font-semibold bg-blue-600 text-white hover:bg-blue-700 rounded-md disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+      class="px-4 py-2 font-semibold bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white rounded-md disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
     >
       Next
     </button>

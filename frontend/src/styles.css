@@ -1,1 +1,8 @@
 @import "tailwindcss";
+
+@font-face {
+  font-family: "Blankscript"; /* Choose a name for your font family */
+  src: url("./assets/fonts/Blanksscript.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}

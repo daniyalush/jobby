@@ -3,19 +3,18 @@ const express = require("express");
 const axios = require("axios");
 const cors = require("cors");
 const http = require("http");
-const path = require("path");
 const connectDB = require("./database/db");
 const Job = require("./models/job");
 
 const PORT = 5000;
 const FETCH_INTERVAL = 5 * 60 * 1000; // 5 minutes
 
-// Connect DB
-connectDB("mongodb://localhost:27017/jobs");
-
 const app = express();
 app.use(cors());
 app.use(express.json());
+
+// Connect DB
+connectDB("mongodb://localhost:27017/jobs");
 
 // Create HTTP server
 const server = http.createServer(app);
